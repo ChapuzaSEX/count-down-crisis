@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://v06kisba4xiy"]
+
+[ext_resource type="Script" path="res://ecenas/scrips/Area2d.cs" id="1_mwtx3"]
+[ext_resource type="Texture2D" uid="uid://ccldatxg83xxx" path="res://imagenes/objetos/bomba.png" id="2_v0p3x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_onhxb"]
+size = Vector2(42, 38)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_mwtx3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.0350356, 0.0529279)
+texture = ExtResource("2_v0p3x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-2, -4)
+shape = SubResource("RectangleShape2D_onhxb")

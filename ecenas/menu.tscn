@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://pm578uo55axl"]
+
+[ext_resource type="Script" path="res://node_2d.gd" id="1_8n8ef"]
+[ext_resource type="Texture2D" uid="uid://b7hfxjxcwaswq" path="res://imagenes/1.png" id="1_y2rsd"]
+[ext_resource type="Script" path="res://button.gd" id="2_e5kya"]
+[ext_resource type="Script" path="res://button_2.gd" id="4_7wdbu"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_8n8ef")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(573.5, 323)
+scale = Vector2(0.598437, 0.587037)
+texture = ExtResource("1_y2rsd")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 510.0
+offset_top = 270.0
+offset_right = 550.0
+offset_bottom = 314.0
+theme_override_font_sizes/font_size = 32
+text = "countdown crisis"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "jugar"
+script = ExtResource("2_e5kya")
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "salir"
+script = ExtResource("4_7wdbu")
