@@ -1,5 +1,6 @@
 extends CharacterBody2D  
 
+@export var nombre: String = "Alex Carter"
 const SPEED = 150.0
 const Correr = 2.0
 const JUMP_VELOCITY = -250.0

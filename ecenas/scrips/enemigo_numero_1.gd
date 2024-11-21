@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+@export var nombre: String = "Enemigo"
 const SPEED = 100.0  # Velocidad de patrulla
 const RAYCAST_DISTANCE = 200.0  # Distancia de detección del jugador
 const GRAVITY = 800.0  # Gravedad para el NPC

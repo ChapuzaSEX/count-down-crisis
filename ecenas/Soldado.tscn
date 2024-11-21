@@ -254,6 +254,7 @@ z_index = 3
 script = ExtResource("1_6b5wd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_7qbsv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -262,4 +263,5 @@ sprite_frames = SubResource("SpriteFrames_jvye8")
 animation = &"Caminar"
 
 [node name="Marker2D" type="Marker2D" parent="."]
+visible = false
 position = Vector2(0, -18)
