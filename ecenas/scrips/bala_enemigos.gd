@@ -16,5 +16,5 @@ func _on_body_entered(body):
 	# Verifica si el objeto con el que colisiona pertenece al grupo "enemy"
 	if body.is_in_group("player"):
 		if body.has_method("take_damage"):
-			body.take_damage(100)  # Llama a la función take_damage en el objeto
+			body.take_damage(20)  # Llama a la función take_damage en el objeto
 			queue_free()  # Destruye la bala
