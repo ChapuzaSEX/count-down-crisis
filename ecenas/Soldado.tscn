@@ -259,8 +259,7 @@ shape = SubResource("CapsuleShape2D_7qbsv")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(3, -33)
 sprite_frames = SubResource("SpriteFrames_jvye8")
-animation = &"Disparo"
-frame_progress = 0.942725
+animation = &"Caminar"
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -18)

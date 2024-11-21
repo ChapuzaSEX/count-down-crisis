@@ -6,6 +6,7 @@ const JUMP_VELOCITY = -250.0
 const MAX_FALL_VELOCITY = 1000.0  # Velocidad de caída que causa la muerte
 const DEATH_HEIGHT = 600.0  # Altura mínima desde la cual se considera que el personaje muere
 
+
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var sprite = $AnimatedSprite2D
 @onready var shoot_point = $Marker2D  # El nodo Position2D que marca el punto de disparo
@@ -119,3 +120,4 @@ func take_damage(damage_amount: int):
 	vida -= damage_amount
 	if vida <= 0:
 		die()
+  
