@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="count down crisis 2.0"
-run/main_scene="res://ecenas/Edificio.tscn"
+run/main_scene="res://ecenas/menu_inicio.tscn"
 config/features=PackedStringArray("4.3", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
