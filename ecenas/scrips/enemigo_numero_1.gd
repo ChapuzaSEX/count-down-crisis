@@ -11,6 +11,9 @@ var cooldown_timer = SHOOT_COOLDOWN  # Temporizador de disparo
 var player_reference = null  # Referencia al jugador detectado
 var vida = 30  # Vida del NPC
 
+@onready var sonBala = $"../AudioStreamPlayer2D"
+@onready var sonHerir =$"../AudioStreamPlayer2D2"
+
 @onready var raycast_left = $RayCast_izquierda  # Raycast a la izquierda
 @onready var raycast_right = $RayCast_derecha  # Raycast a la derecha
 @onready var shoot_point = $ShootPoint  # Punto desde donde dispara el NPC
@@ -87,6 +90,7 @@ func start_pursuit(direction: int):
 func shoot_bullet(direction: int):
 	# Instancia y dispara la bala en la dirección del jugador
 	var bullet = bullet_scene.instantiate()
+	sonBala.play()
 	bullet.position = shoot_point.global_position
 
 	# Asegurarse de que la dirección de la bala se ajuste al movimiento
@@ -105,6 +109,7 @@ func change_direction():
 # Función para recibir daño
 func take_damage(amount: int):
 	vida -= amount  # Reduce la vida del NPC
+	sonHerir.play()
 	print("Vida restante: ", vida)
 	if vida <= 0:
 		die()  # Llama a la función de muerte si la vida llega a 0

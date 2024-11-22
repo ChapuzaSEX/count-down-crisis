@@ -7,6 +7,8 @@ const JUMP_VELOCITY = -250.0
 const MAX_FALL_VELOCITY = 1000.0  # Velocidad de caída que causa la muerte
 const DEATH_HEIGHT = 600.0  # Altura mínima desde la cual se considera que el personaje muere
 
+@onready var sonBala = $"../AudioStreamPlayer2D"
+@onready var sonHerir =$"../AudioStreamPlayer2D2"
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var sprite = $AnimatedSprite2D
@@ -82,6 +84,7 @@ func _physics_process(delta):
 func shoot_bullet():
 	# Instanciar la bala
 	var bullet = bullet_scene.instantiate()
+	sonBala.play()
 
 	# Posicionar la bala en el punto de disparo (GunPoint)
 	bullet.position = shoot_point.global_position
@@ -119,6 +122,8 @@ func _ready():
 # Función para que el personaje reciba daño
 func take_damage(damage_amount: int):
 	vida -= damage_amount
+	sonHerir.play()
+	get_tree().get_nodes_in_group("BarraVida")[0].disminuirVida(10)
 	if vida <= 0:
 		die()
   
