@@ -9,13 +9,13 @@ public partial class Area2d : Area2D
 	private SerialPort serialPort;
 	private bool minigameSuccessful = false;
 	private bool responseReceived = false;
-	private Node characterBody; // Almacena el cuerpo del personaje
-	private Timer gameTimer; // Temporizador del minijuego
-	private float gameDuration = 20.0f; // Duración del minijuego en segundos
+	private Node characterBody;
+	private Timer gameTimer;
+	private float gameDuration = 20.0f;
 
 	public override void _Ready()
 	{
-		// Conectar la señal
+		// Conectar la señal de colisión
 		this.BodyEntered += OnBodyEntered;
 
 		// Abrir el puerto serial
@@ -24,9 +24,9 @@ public partial class Area2d : Area2D
 		// Inicializar el temporizador
 		gameTimer = new Timer();
 		AddChild(gameTimer);
-		gameTimer.WaitTime = gameDuration; // Tiempo para el minijuego
-		gameTimer.OneShot = true; // El temporizador solo se ejecuta una vez
-		gameTimer.Timeout += OnGameTimeout; // Conectar la señal de tiempo agotado
+		gameTimer.WaitTime = gameDuration;
+		gameTimer.OneShot = true;
+		gameTimer.Timeout += OnGameTimeout;
 	}
 
 	private void OpenSerialPort()
@@ -34,7 +34,7 @@ public partial class Area2d : Area2D
 		try
 		{
 			serialPort = new SerialPort(PORT_NAME, BAUD_RATE);
-			serialPort.DataReceived += OnDataReceived; // Escucha las respuestas de Arduino
+			serialPort.DataReceived += OnDataReceived;
 			serialPort.Open();
 			GD.Print("Puerto serial abierto: " + PORT_NAME);
 		}
@@ -46,37 +46,37 @@ public partial class Area2d : Area2D
 
 	private void OnBodyEntered(Node body)
 	{
-		characterBody = body; // Almacena la referencia al cuerpo del personaje
-
-		// Iniciar el minijuego
-		SendArduinoMessage("Iniciar");
-		gameTimer.Start(); // Inicia el temporizador
-
-		// Ocultar la bomba
-		Hide();
+		characterBody = body;
+		if (body.Name == "CharacterBody2D")
+		{
+			// Cambiar a la escena de indicaciones
+			GetTree().ChangeSceneToFile("res://ecenas/indicaciones.tscn");
+			
+			// Enviar mensaje a Arduino para iniciar
+			SendArduinoMessage("Iniciar");
+			gameTimer.Start();
+			Hide();  // Ocultar la bomba
+		}
 	}
 
 	private void OnDataReceived(object sender, SerialDataReceivedEventArgs e)
 	{
-		string response = serialPort.ReadLine().Trim(); // Lee la respuesta del Arduino
-
-		// Solo procesar la respuesta si no se ha recibido previamente
+		string response = serialPort.ReadLine().Trim();
 		if (!responseReceived)
 		{
 			responseReceived = true;
-
 			if (response == "R")
 			{
 				minigameSuccessful = true;
-				GD.Print("correcto"); // Imprime "correcto" en caso de éxito
+				GD.Print("correcto");
 				SendArduinoMessage("Resuelto");
-				gameTimer.Stop(); // Detener el temporizador al resolver correctamente
+				gameTimer.Stop();
 			}
 			else if (response == "F")
 			{
 				minigameSuccessful = false;
-				GD.Print("incorrecto"); // Imprime "incorrecto" en caso de fallo
-				HandleMinigameResult(characterBody); // Manejar el resultado de fallo inmediatamente
+				GD.Print("incorrecto");
+				HandleMinigameResult(characterBody);
 			}
 		}
 	}
@@ -86,19 +86,13 @@ public partial class Area2d : Area2D
 		if (minigameSuccessful)
 		{
 			GD.Print("Minijuego completado exitosamente, el personaje no muere.");
-			return; // No hacer nada si se resolvió correctamente
+			return;
 		}
 
-		// Si el minijuego falló
-		GD.Print("El minijuego falló, se modifica la vida del personaje.");
 		if (body is CharacterBody2D characterBody)
 		{
-			characterBody.Set("vida", 0); // Establecer la propiedad 'vida' a 0
+			characterBody.Set("vida", 0); // Modificar vida a 0
 			GD.Print("Vida del personaje modificada a 0.");
-		}
-		else
-		{
-			GD.Print("El cuerpo no tiene la propiedad 'vida' o no es del tipo correcto.");
 		}
 
 		SendArduinoMessage("Fallo");
@@ -106,15 +100,11 @@ public partial class Area2d : Area2D
 
 	private void OnGameTimeout()
 	{
-		GD.Print("Tiempo agotado"); // Mensaje en la consola
-		if (!minigameSuccessful) // Solo si no se ha resuelto correctamente
+		GD.Print("Tiempo agotado");
+		if (!minigameSuccessful)
 		{
 			GD.Print("El minijuego falló por tiempo agotado.");
-			HandleMinigameResult(characterBody); // Manejar la muerte del personaje
-		}
-		else
-		{
-			GD.Print("Minijuego completado exitosamente antes del tiempo."); // Mensaje de éxito
+			HandleMinigameResult(characterBody);
 		}
 	}
 

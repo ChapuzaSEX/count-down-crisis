@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://chgdvr3xxba1p"]
+
+[ext_resource type="Script" path="res://ecenas/scrips/Indicaciones.cs" id="1_eyqnt"]
+[ext_resource type="Texture2D" uid="uid://nq44per5go41" path="res://imagenes/Diseno_sin_titulo-2.png" id="2_qfc8s"]
+[ext_resource type="FontFile" uid="uid://dhe1bcqor0ihx" path="res://Fuentes/VCR_OSD_MONO_1.001.ttf" id="3_wq7na"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_eyqnt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -229.0
+offset_top = -250.0
+offset_right = 1372.0
+offset_bottom = 903.0
+texture = ExtResource("2_qfc8s")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 151.0
+offset_top = 91.0
+offset_right = 992.0
+offset_bottom = 608.0
+theme_override_fonts/normal_font = ExtResource("3_wq7na")
+theme_override_font_sizes/normal_font_size = 35

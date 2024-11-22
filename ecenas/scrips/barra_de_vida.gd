@@ -8,4 +8,4 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func disminuirVida(daño) -> void:
-	value-=daño
+	value -= daño
