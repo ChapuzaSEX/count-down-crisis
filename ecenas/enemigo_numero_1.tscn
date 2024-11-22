@@ -167,6 +167,7 @@ animations = [{
 }]
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
+z_index = 3
 script = ExtResource("1_an7hm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
