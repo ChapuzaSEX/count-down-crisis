@@ -1,0 +1,60 @@
+[gd_scene load_steps=4 format=3 uid="uid://dnwe7ff4as18m"]
+
+[ext_resource type="Script" path="res://ecenas/scrips/obpcion.gd" id="1_b2j6e"]
+[ext_resource type="Texture2D" uid="uid://b7hfxjxcwaswq" path="res://imagenes/1.png" id="2_070s4"]
+[ext_resource type="FontFile" uid="uid://cdyir81tjkkcl" path="res://texto/m42.TTF" id="3_bcxt4"]
+
+[node name="opciones" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_b2j6e")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18359, 0.18359, 0.18359, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.013
+offset_left = 7.0
+offset_top = 1.0
+offset_right = 1615.02
+offset_bottom = 969.0
+texture = ExtResource("2_070s4")
+expand_mode = 5
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 283.0
+offset_right = 610.0
+offset_bottom = 416.0
+alignment = 1
+
+[node name="volumen" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bcxt4")
+theme_override_font_sizes/font_size = 36
+text = "volumen"
+
+[node name="atras" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "salir"
+
+[connection signal="pressed" from="VBoxContainer/volumen" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/atras" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/atras" to="." method="_on_atras_pressed"]
