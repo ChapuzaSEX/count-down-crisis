@@ -1,15 +1,8 @@
-<<<<<<< Updated upstream
-[gd_scene load_steps=3 format=3 uid="uid://katla4joxpc"]
-
-[ext_resource type="Texture2D" uid="uid://0uptt1ud0ydp" path="res://imagenes/images.jpg" id="1_6n1no"]
-[ext_resource type="Script" path="res://ecenas/menu_inicio.gd" id="1_fhabf"]
-=======
 [gd_scene load_steps=4 format=3 uid="uid://dr6pal7qi7rnw"]
 
 [ext_resource type="Script" path="res://menu_inicio.gd" id="1_aaher"]
 [ext_resource type="Texture2D" uid="uid://b7hfxjxcwaswq" path="res://imagenes/1.png" id="2_tabqh"]
 [ext_resource type="FontFile" uid="uid://cdyir81tjkkcl" path="res://texto/m42.TTF" id="3_qwxjm"]
->>>>>>> Stashed changes
 
 [node name="menu_inicio" type="Control"]
 layout_mode = 3
@@ -18,7 +11,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_fhabf")
+script = ExtResource("1_aaher")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 1
@@ -37,12 +30,6 @@ anchors_preset = -1
 anchor_right = 0.013
 offset_left = 7.0
 offset_top = 1.0
-<<<<<<< Updated upstream
-offset_right = 1150.02
-offset_bottom = 642.0
-texture = ExtResource("1_6n1no")
-expand_mode = 2
-=======
 offset_right = 1615.02
 offset_bottom = 969.0
 texture = ExtResource("2_tabqh")
@@ -60,7 +47,6 @@ offset_bottom = 969.0
 texture = ExtResource("2_tabqh")
 expand_mode = 5
 stretch_mode = 1
->>>>>>> Stashed changes
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 0
@@ -90,23 +76,15 @@ text = "salir"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-<<<<<<< Updated upstream
-offset_left = 221.0
-offset_top = 178.0
-offset_right = 759.0
-offset_bottom = 265.0
-theme_override_font_sizes/font_size = 50
-text = "COUNTDOWN CRISIS"
-=======
-offset_left = 163.0
-offset_top = 165.0
-offset_right = 1603.0
-offset_bottom = 261.0
+offset_left = 152.0
+offset_top = 64.0
+offset_right = 1412.0
+offset_bottom = 235.0
 theme_override_fonts/font = ExtResource("3_qwxjm")
 theme_override_font_sizes/font_size = 56
-text = "Count down crisis
+text = "Countdown
+ crisis
 "
->>>>>>> Stashed changes
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/opciones" to="." method="_on_opciones_pressed"]

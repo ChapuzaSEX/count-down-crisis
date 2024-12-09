@@ -52,7 +52,8 @@ text = "volumen"
 
 [node name="atras" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 50
+theme_override_fonts/font = ExtResource("3_bcxt4")
+theme_override_font_sizes/font_size = 40
 text = "salir"
 
 [connection signal="pressed" from="VBoxContainer/volumen" to="." method="_on_button_pressed"]
