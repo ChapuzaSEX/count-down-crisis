@@ -51,3 +51,8 @@ func _on_escalera_7_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.nombre == "Alex Carter":
 		personaje.position.x = 1369
 		personaje.position.y = -303
+
+
+func _on_pasar_segundo_nivel_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D and body.nombre == "Alex Carter":
+		get_tree().change_scene_to_file("res://ecenas/segundo_nivel.tscn")

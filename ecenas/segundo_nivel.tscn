@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://ctmcnuyrybmck"]
+[gd_scene load_steps=45 format=3 uid="uid://ctmcnuyrybmck"]
 
 [ext_resource type="Texture2D" uid="uid://dnvgxrp1ldopj" path="res://Suelo y Fondo/Assets_City.png" id="1_6l8b5"]
 [ext_resource type="Script" path="res://ecenas/scrips/edificio_segundo_nivel.gd" id="1_i6ib1"]
@@ -17,6 +17,11 @@
 [ext_resource type="Texture2D" uid="uid://cte4mareksorw" path="res://Decoracion/18.png" id="13_hnnmg"]
 [ext_resource type="PackedScene" uid="uid://dgbs5apujwhnx" path="res://ecenas/Soldado.tscn" id="15_fs4kk"]
 [ext_resource type="Script" path="res://ecenas/scrips/barra_de_vida.gd" id="16_pyej1"]
+[ext_resource type="PackedScene" uid="uid://vrf0avxdmnr8" path="res://ecenas/enemigo_numero_1.tscn" id="16_tetly"]
+[ext_resource type="AudioStream" uid="uid://bpjwlejpl2p3j" path="res://Music/Sketchbook 2024-10-14.ogg" id="18_d7vtw"]
+[ext_resource type="Script" path="res://ecenas/scrips/audio_stream_player.gd" id="19_adj3y"]
+[ext_resource type="AudioStream" uid="uid://d4h4xoer78t6g" path="res://Music/308 Single.mp3" id="20_4gpdp"]
+[ext_resource type="AudioStream" uid="uid://c7mm5acigr2jd" path="res://Music/13. Death Groan (Male).wav" id="21_n8ixh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6l8i4"]
 texture = ExtResource("1_6l8b5")
@@ -1420,12 +1425,6 @@ sources/17 = SubResource("TileSetAtlasSource_c6xgq")
 sources/18 = SubResource("TileSetAtlasSource_h15af")
 sources/19 = SubResource("TileSetAtlasSource_fmcjr")
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atbxi"]
-bg_color = Color(0.174861, 0.143206, 0.0844214, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb8oe"]
-bg_color = Color(0.573813, 0.153533, 0.201117, 1)
-
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_guwsd"]
 size = Vector2(32, 40)
 
@@ -1443,6 +1442,12 @@ size = Vector2(27, 38)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vnhef"]
 size = Vector2(30, 40)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_atbxi"]
+bg_color = Color(0.174861, 0.143206, 0.0844214, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb8oe"]
+bg_color = Color(0.573813, 0.153533, 0.201117, 1)
 
 [node name="Edificio" type="Node2D"]
 script = ExtResource("1_i6ib1")
@@ -1472,25 +1477,6 @@ layer_4/tile_data = PackedInt32Array(1638392, 196612, 14, 1703928, 655364, 13421
 layer_5/name = "Layer3"
 layer_5/z_index = 3
 layer_5/tile_data = PackedInt32Array(852005, 589841, 1, 852006, 655377, 1, 851968, 589841, 1, 851969, 655377, 1, 852041, 589841, 1, 852042, 655377, 1, 852025, 589841, 0, 852026, 655377, 0, 852029, 589841, 0, 852030, 655377, 0, 851993, 589841, 0, 851994, 655377, 0, 851997, 589841, 0, 851998, 655377, 0, 852001, 589841, 0, 852002, 655377, 0, 851972, 589841, 0, 851973, 655377, 0, 852028, 393233, 5, 917564, 393233, 6, 852040, 655377, 5, 917576, 655377, 6, 852024, 851985, 5, 917560, 851985, 6, 851996, 393233, 5, 917532, 393233, 6, 851992, 524305, 5, 917528, 524305, 6, 852000, 524305, 5, 917536, 524305, 6, 852004, 458769, 5, 917540, 458769, 6, 917503, 851985, 5, 983039, 851985, 6, 851983, 393233, 5, 917519, 393233, 6, 327725, 786449, 1, 393261, 786449, 2, 327726, 851985, 1, 393262, 851985, 2, 327728, 458769, 5, 393264, 458769, 6, 327729, 589841, 1, 327730, 655377, 1, 327732, 851985, 5, 393268, 851985, 6, 327733, 589841, 0, 327734, 655377, 0, 327744, 589841, 5, 393280, 589841, 6, 327745, 589841, 1, 327746, 655377, 1, 327748, 589841, 5, 393284, 589841, 6, 327749, 589841, 0, 327750, 655377, 0, 327752, 851985, 5, 393288, 851985, 6, 327753, 589841, 1, 327754, 655377, 1, -131073, 393233, 5, -65537, 393233, 6, -196608, 589841, 1, -196607, 655377, 1, -196605, 458769, 5, -131069, 458769, 6, -196604, 589841, 0, -196603, 655377, 0, -196601, 851985, 5, -131065, 851985, 6, -196600, 589841, 1, -196599, 655377, 1, -196597, 589841, 5, -131061, 589841, 6, -196596, 589841, 1, -196595, 655377, 1, -196593, 786449, 5, -131057, 786449, 6, -196592, 589841, 0, -196591, 655377, 0, -196560, 589841, 5, -131024, 589841, 6, -196559, 589841, 1, -196558, 655377, 1, -196556, 393233, 5, -131020, 393233, 6, -196555, 589841, 0, -196554, 655377, 0, -196552, 655377, 5, -131016, 655377, 6, -196551, 589841, 1, -196550, 655377, 1, -196548, 589841, 5, -131012, 589841, 6, -196547, 589841, 1, -196546, 655377, 1, -196544, 393233, 5, -131008, 393233, 6, -196543, 589841, 0, -196542, 655377, 0, -196540, 393233, 5, -131004, 393233, 6, -196539, 589841, 1, -196538, 655377, 1, -196536, 458769, 5, -131000, 458769, 6, -196535, 589841, 0, -196534, 655377, 0, -196562, 720913, 1, -131026, 720913, 2, 327741, 786449, 1, 393277, 786449, 2, 327742, 851985, 1, 393278, 851985, 2, 327736, 720913, 1, 393272, 720913, 2, 2424894, 524305, 5, 2490430, 524305, 6, 2424884, 655377, 5, 2490420, 655377, 6, 2424887, 786449, 5, 2490423, 786449, 6, 2424891, 786449, 5, 2490427, 786449, 6, 2424896, 655377, 5, 2490432, 655377, 6, 2424900, 655377, 5, 2490436, 655377, 6, 1900592, 655377, 5, 1966128, 655377, 6, 1835055, 589841, 3, 1835056, 655377, 3, 1900603, 589841, 5, 1900616, 262161, 4, 1900618, 720913, 5, 1966154, 720913, 6, 1966139, 589841, 6, 1835068, 196625, 3, 1835069, 262161, 3, 1900548, 786449, 1, 1966084, 786449, 2, 1900549, 851985, 1, 1966085, 851985, 2, 1900553, 589841, 0, 1900554, 655377, 0, 1900552, 524305, 5, 1966088, 524305, 6, 1900572, 720913, 0, 1966114, 589841, 2, 1966138, 589841, 2, 1900610, 720913, 1, 1966146, 720913, 2, 1900571, 393233, 5, 1966107, 393233, 6, 1900576, 589841, 5, 1966112, 589841, 6, 1900580, 786449, 5, 1966116, 786449, 6, 1966094, 196625, 6, 1966095, 262161, 6, 1966096, 327697, 6, 1900558, 17, 6, 1900559, 65553, 6, 1900560, 131089, 6, 2424846, 851985, 5, 2490382, 851985, 6, 2424840, 589841, 5, 2490376, 589841, 6, 1376304, 786449, 1, 1441840, 786449, 2, 1376305, 851985, 1, 1441841, 851985, 2, 1376312, 786449, 1, 1441848, 786449, 2, 1376313, 851985, 1, 1441849, 851985, 2, 1376328, 786449, 1, 1441864, 786449, 2, 1376329, 851985, 1, 1441865, 851985, 2, 1376325, 655377, 5, 1441861, 655377, 6, 1376303, 524305, 5, 1441839, 524305, 6, 1376315, 458769, 5, 1441851, 458769, 6, 1376287, 589841, 1, 1376288, 655377, 1, 1376301, 589841, 0, 1376302, 655377, 0, 1376316, 589841, 0, 1376317, 655377, 0, 1376263, 655377, 5, 1441799, 655377, 6, 1376266, 655377, 5, 1441802, 655377, 6, 1376270, 655377, 5, 1441806, 655377, 6, 1376258, 589841, 5, 1441794, 589841, 6, 1376271, 720913, 5, 1441807, 720913, 6, 1376286, 655377, 5, 1441822, 655377, 6, 851984, 589841, 0, 851985, 655377, 0, 852018, 589841, 5, 917554, 589841, 6, 851974, 786449, 5, 917510, 786449, 6, 327691, 65553, 6, 327684, 65553, 6, 196613, 327697, 4, 196614, 393233, 4, 327692, 655377, 5, 393228, 655377, 6, -327652, 720913, 3, -262116, 720913, 4, -327651, 786449, 3, -262115, 786449, 4, -327650, 851985, 3, -262114, 851985, 4, -262113, 262161, 4, -131043, 655377, 6, -196578, 65553, 6, -196577, 131089, 6, -196575, 720913, 5, -131039, 720913, 6, -196579, 655377, 5, -131047, 196625, 6, -131046, 327697, 6, -131038, 196625, 6, -131037, 327697, 6)
-
-[node name="CharacterBody2D" parent="." instance=ExtResource("15_fs4kk")]
-position = Vector2(-103, 594)
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(0, -2)
-zoom = Vector2(3, 3)
-
-[node name="BarraDeVida" type="ProgressBar" parent="CharacterBody2D" groups=["BarraVida"]]
-offset_left = -188.0
-offset_top = -107.0
-offset_right = -82.0
-offset_bottom = -84.0
-theme_override_colors/font_color = Color(0, 0, 0, 0)
-theme_override_styles/background = SubResource("StyleBoxFlat_atbxi")
-theme_override_styles/fill = SubResource("StyleBoxFlat_lb8oe")
-value = 100.0
-script = ExtResource("16_pyej1")
-metadata/_edit_use_anchors_ = true
 
 [node name="Escalera 1-2" type="Area2D" parent="."]
 
@@ -1527,6 +1513,73 @@ shape = SubResource("RectangleShape2D_g0vt5")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Escalera 6-2"]
 position = Vector2(-104, -46)
 shape = SubResource("RectangleShape2D_vnhef")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("18_d7vtw")
+volume_db = -12.18
+parameters/looping = true
+script = ExtResource("19_adj3y")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("20_4gpdp")
+
+[node name="AudioStreamPlayer2D2" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_n8ixh")
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("15_fs4kk")]
+position = Vector2(-103, 594)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(0, -2)
+zoom = Vector2(3, 3)
+
+[node name="BarraDeVida" type="ProgressBar" parent="CharacterBody2D" groups=["BarraVida"]]
+offset_left = -188.0
+offset_top = -107.0
+offset_right = -82.0
+offset_bottom = -84.0
+theme_override_colors/font_color = Color(0, 0, 0, 0)
+theme_override_styles/background = SubResource("StyleBoxFlat_atbxi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_lb8oe")
+value = 100.0
+script = ExtResource("16_pyej1")
+metadata/_edit_use_anchors_ = true
+
+[node name="CharacterBody2D3" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(593, 494)
+
+[node name="CharacterBody2D2" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(322, 494)
+
+[node name="CharacterBody2D4" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(-3, 365)
+
+[node name="CharacterBody2D5" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(371, 365)
+
+[node name="CharacterBody2D6" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(1010, 365)
+
+[node name="CharacterBody2D7" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(237, 110)
+
+[node name="CharacterBody2D8" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(590, 109)
+
+[node name="CharacterBody2D9" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(841, 237)
+
+[node name="CharacterBody2D10" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(376, 237)
+
+[node name="CharacterBody2D11" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(992, 109)
+
+[node name="CharacterBody2D12" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(213, -19)
+
+[node name="CharacterBody2D13" parent="." instance=ExtResource("16_tetly")]
+position = Vector2(931, -19)
 
 [connection signal="body_entered" from="Escalera 1-2" to="." method="_on_escalera_12_body_entered"]
 [connection signal="body_entered" from="Escalera 2-2" to="." method="_on_escalera_22_body_entered"]
