@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://2rf03sus1erq"]
+
+[ext_resource type="Script" path="res://ecenas/scrips/canvas_layer.gd" id="1_g6b4l"]
+[ext_resource type="FontFile" uid="uid://cdyir81tjkkcl" path="res://texto/m42.TTF" id="2_llkju"]
+
+[node name="pausa" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_g6b4l")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.301961)
+
+[node name="Label" type="Label" parent="."]
+physics_interpolation_mode = 0
+visible = false
+offset_left = 240.0
+offset_top = 212.0
+offset_right = 390.0
+offset_bottom = 236.0
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("2_llkju")
+text = "pausa"

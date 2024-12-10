@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dr6pal7qi7rnw"]
+[gd_scene load_steps=5 format=3 uid="uid://dr6pal7qi7rnw"]
 
 [ext_resource type="Script" path="res://menu_inicio.gd" id="1_aaher"]
 [ext_resource type="Texture2D" uid="uid://b7hfxjxcwaswq" path="res://imagenes/1.png" id="2_tabqh"]
 [ext_resource type="FontFile" uid="uid://cdyir81tjkkcl" path="res://texto/m42.TTF" id="3_qwxjm"]
+[ext_resource type="Texture2D" uid="uid://djmlj7gc1vv3m" path="res://imagenes/descarga (2).png" id="4_trc70"]
 
 [node name="menu_inicio" type="Control"]
 layout_mode = 3
@@ -76,15 +77,26 @@ text = "salir"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 152.0
-offset_top = 64.0
-offset_right = 1412.0
-offset_bottom = 235.0
+offset_left = 140.0
+offset_top = 66.0
+offset_right = 1400.0
+offset_bottom = 237.0
+theme_override_colors/font_color = Color(0.785259, 1.66051e-06, 4.81307e-07, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0.351843, 0.0081629, 1.3236e-07, 1)
 theme_override_fonts/font = ExtResource("3_qwxjm")
 theme_override_font_sizes/font_size = 56
 text = "Countdown
  crisis
 "
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 950.0
+offset_top = 13.0
+offset_right = 1132.0
+offset_bottom = 178.0
+texture = ExtResource("4_trc70")
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/opciones" to="." method="_on_opciones_pressed"]
