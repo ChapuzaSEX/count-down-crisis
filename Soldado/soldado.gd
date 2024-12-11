@@ -8,7 +8,7 @@ const MAX_FALL_VELOCITY = 1000.0  # Velocidad de caída que causa la muerte
 const DEATH_HEIGHT = 600.0  # Altura mínima desde la cual se considera que el personaje muere
 
 @onready var sonBala = $"../AudioStreamPlayer2D"
-@onready var sonHerir =$"../AudioStreamPlayer2D2"
+@onready var sonHerir = $"../AudioStreamPlayer2D2"
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var sprite = $AnimatedSprite2D
@@ -17,11 +17,14 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Cargar la escena de la bala
 var bullet_scene = preload("res://ecenas/bala.tscn")  # Asegúrate de que la ruta sea correcta
 
-var shoot_cooldown = 0.2
-var time_since_last_shot = 0
+var shoot_cooldown = 0.5  # Ajusta la cadencia de disparo aquí (0.5 segundos entre disparos)
+var time_since_last_shot = shoot_cooldown  # Inicia con el cooldown completo para evitar disparos al iniciar
 
 # Nueva variable para la vida del personaje
 var vida = 100  # Puedes ajustar el valor inicial según sea necesario
+
+# Variable para controlar si está disparando
+var is_shooting = false
 
 func animaciones(velocidad):
 	if velocidad == 150:
@@ -35,46 +38,46 @@ func muerte():
 func _physics_process(delta):
 	time_since_last_shot += delta
 
-	if not is_on_floor():
-		velocity.y += gravity * delta
-
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction:
-		var velociad_corerr = SPEED
-		if Input.is_action_pressed("ui_up"):
-			velociad_corerr *= Correr
-		velocity.x = direction * velociad_corerr
-		animaciones(velociad_corerr)
-
-		sprite.flip_h = direction < 0
-
+	if is_shooting:
+		# Si está disparando, no permitimos movimiento ni salto
+		velocity.x = 0
+		sprite.play("Disparo")
 	else:
-		sprite.play("Idle")
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		if not is_on_floor():
+			velocity.y += gravity * delta
+
+		if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+			velocity.y = JUMP_VELOCITY
+
+		var direction = Input.get_axis("ui_left", "ui_right")
+		if direction:
+			var velociad_corerr = SPEED
+			if Input.is_action_pressed("ui_up"):
+				velociad_corerr *= Correr
+			velocity.x = direction * velociad_corerr
+			animaciones(velociad_corerr)
+
+			sprite.flip_h = direction < 0
+		else:
+			sprite.play("Idle")
+			velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
 
 	# Verificar si el personaje ha caído demasiado rápido o desde una altura peligrosa
 	if position.y > DEATH_HEIGHT or velocity.y > MAX_FALL_VELOCITY:
-		die()  # Llama a la función que maneja la muerte del personaje
+		die()
 
-	# Reproducir la animación y disparar si se mantiene presionado "shoot"
-	if Input.is_action_pressed("ui_select"):
-		if time_since_last_shot >= shoot_cooldown:
-			shoot_bullet()
-			time_since_last_shot = 0
+	# Disparar al mantener presionada "shoot" si no está disparando y el cooldown ha pasado
+	if Input.is_action_just_pressed("ui_select") and not is_shooting and time_since_last_shot >= shoot_cooldown:
+		is_shooting = true  # Activar el estado de disparo
+		shoot_bullet()
+		time_since_last_shot = 0  # Reiniciar el tiempo del cooldown
 
-		# Asegurarse de que la animación no se reinicie cada vez
-		if sprite.animation != "Disparo":
-			sprite.play("Disparo")
-
-	# Si se suelta la tecla de disparo, volver a la animación normal
-	else:
-		if sprite.animation == "Disparo":
-			sprite.play("Idle")  # Puedes cambiar a otra animación si no está quieto
+	# Liberar el estado de disparo cuando termine el cooldown
+	elif is_shooting and time_since_last_shot >= shoot_cooldown:
+		is_shooting = false
+		sprite.play("Idle")
 
 	# Aquí es donde verificas si la vida ha llegado a 0
 	if vida <= 0:
@@ -86,7 +89,7 @@ func shoot_bullet():
 	var bullet = bullet_scene.instantiate()
 	sonBala.play()
 
-	# Posicionar la bala en el punto de disparo (GunPoint)
+	# Posicionar la bala en el punto de disparo
 	bullet.position = shoot_point.global_position
 
 	# Establecer la dirección de la bala
@@ -126,4 +129,3 @@ func take_damage(damage_amount: int):
 	get_tree().get_nodes_in_group("BarraVida")[0].disminuirVida(10)
 	if vida <= 0:
 		die()
-  
