@@ -1,7 +1,7 @@
 extends CharacterBody2D  
 
 @export var nombre: String = "Alex Carter"
-const SPEED = 150.0
+var SPEED = 150.0
 const Correr = 2.0
 const JUMP_VELOCITY = -250.0
 const MAX_FALL_VELOCITY = 1000.0  # Velocidad de caída que causa la muerte
@@ -128,4 +128,5 @@ func take_damage(damage_amount: int):
 	sonHerir.play()
 	get_tree().get_nodes_in_group("BarraVida")[0].disminuirVida(10)
 	if vida <= 0:
+		SPEED = 0
 		die()

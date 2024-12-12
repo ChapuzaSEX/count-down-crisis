@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @export var nombre: String = "Enemigo"
-const SPEED = 100.0  # Velocidad de patrulla
+var SPEED = 100.0  # Velocidad de patrulla
 const RAYCAST_DISTANCE = 200.0  # Distancia de detección del jugador
 const GRAVITY = 800.0  # Gravedad para el NPC
 const SHOOT_COOLDOWN = 1.0  # Tiempo entre disparos
@@ -10,6 +10,11 @@ var pursuing = false  # Estado de persecución
 var cooldown_timer = SHOOT_COOLDOWN  # Temporizador de disparo
 var player_reference = null  # Referencia al jugador detectado
 var vida = 30  # Vida del NPC
+
+# Variable para controlar si está disparando
+var is_shooting = false
+var shoot_cooldown = 0.4  # Ajusta la cadencia de disparo aquí (0.5 segundos entre disparos)
+var time_since_last_shot = shoot_cooldown  # Inicia con el cooldown completo para evitar disparos al iniciar
 
 @onready var sonBala = $"../AudioStreamPlayer2D"
 @onready var sonHerir =$"../AudioStreamPlayer2D2"
@@ -32,17 +37,26 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.y = 0
 
-	# Control de patrulla cuando no persigue
-	if not pursuing:
-		$AnimatedSprite2D.play("Run")  # Animación de caminar
-		velocity.x = SPEED if !$AnimatedSprite2D.flip_h else -SPEED
-	else:
-		$AnimatedSprite2D.play("Run")  # Mantener animación al perseguir
-
-	# Actualiza los raycasts y el temporizador de disparo
-	raycast_left.force_raycast_update()
-	raycast_right.force_raycast_update()
+	# Actualiza el temporizador de disparo
 	cooldown_timer -= delta
+	time_since_last_shot += delta
+
+	# Control de disparo
+	if is_shooting:
+		$AnimatedSprite2D.play("Disparo")
+		velocity.x = 0  # Detener el movimiento mientras dispara
+
+		# Finaliza el estado de disparo si el cooldown ha pasado
+		if time_since_last_shot >= shoot_cooldown:
+			is_shooting = false
+	else:
+		# Control de patrulla o persecución
+		if not pursuing:
+			SPEED = 100
+			$AnimatedSprite2D.play("Run")
+			velocity.x = SPEED if !$AnimatedSprite2D.flip_h else -SPEED
+		else:
+			$AnimatedSprite2D.play("Run")
 
 	# Detectar al jugador o cambiar de dirección al topar con pared
 	check_player_detection_and_distance()
@@ -50,11 +64,12 @@ func _physics_process(delta: float) -> void:
 		change_direction()
 
 	# Cambia a animación de idle cuando esté quieto
-	if velocity.x == 0:
+	if not is_shooting and velocity.x == 0:
 		$AnimatedSprite2D.play("Idle")
 
 	# Mueve el NPC
 	move_and_slide()
+
 
 func check_player_detection_and_distance():
 	# Detección del jugador a través de los raycasts
@@ -72,33 +87,35 @@ func check_player_detection_and_distance():
 		player_reference = null
 
 func start_pursuit(direction: int):
-	# Inicia la persecución si el jugador está dentro de la distancia del RayCast
+	# Inicia la persecución y prepara el disparo
 	if player_reference:
 		var distance_to_player = global_position.distance_to(player_reference.global_position)
 		if distance_to_player <= RAYCAST_DISTANCE:
 			pursuing = true
-			velocity.x = direction * SPEED * 1.5  # Incrementa la velocidad al perseguir
-			print("Persecución iniciada")
+			velocity.x = direction * SPEED * 0.5
 		else:
-			pursuing = false  # Detiene si el jugador sale de rango
+			pursuing = false
+			SPEED = 100
 
 	# Disparar si está persiguiendo y el temporizador ha terminado
 	if pursuing and cooldown_timer <= 0:
+		print("Preparando disparo...")
 		shoot_bullet(direction)
+		is_shooting = true
+		SPEED = 0
+		time_since_last_shot = 0  # Reinicia el temporizador para el disparo
 		cooldown_timer = SHOOT_COOLDOWN
 
 func shoot_bullet(direction: int):
-	# Instancia y dispara la bala en la dirección del jugador
+	# Instancia y dispara la bala
 	var bullet = bullet_scene.instantiate()
 	sonBala.play()
 	bullet.position = shoot_point.global_position
-
-	# Asegurarse de que la dirección de la bala se ajuste al movimiento
 	bullet.direction = Vector2(direction, 0).normalized()
-	
 	get_tree().current_scene.add_child(bullet)
-	$AnimatedSprite2D.play("Disparo")  # Cambia a la animación de disparo
-	print("Bala disparada en dirección: ", direction)
+
+	# Cambia a la animación de disparo
+	$AnimatedSprite2D.play("Disparo")
 
 func change_direction():
 	# Cambia de dirección al topar con una pared
