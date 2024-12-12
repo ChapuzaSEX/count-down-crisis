@@ -1,0 +1,78 @@
+[gd_scene load_steps=6 format=3 uid="uid://d3liipg08fr35"]
+
+[ext_resource type="Script" path="res://ecenas/scrips/volumen.gd" id="1_v48xd"]
+[ext_resource type="Texture2D" uid="uid://b7hfxjxcwaswq" path="res://imagenes/1.png" id="2_38uhr"]
+[ext_resource type="FontFile" uid="uid://cdyir81tjkkcl" path="res://texto/m42.TTF" id="3_7k7dq"]
+[ext_resource type="AudioStream" uid="uid://bpjwlejpl2p3j" path="res://Music/Sketchbook 2024-10-14.ogg" id="4_jujyb"]
+[ext_resource type="Texture2D" uid="uid://c7jkyp6i5kev3" path="res://imagenes/objetos/Sprite-0001.png" id="5_sbcqc"]
+
+[node name="volumen" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v48xd")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.18359, 0.18359, 0.18359, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 0.013
+offset_left = 7.0
+offset_top = 1.0
+offset_right = 1615.02
+offset_bottom = 969.0
+texture = ExtResource("2_38uhr")
+expand_mode = 5
+stretch_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 283.0
+offset_right = 610.0
+offset_bottom = 416.0
+alignment = 1
+
+[node name="atras" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_7k7dq")
+theme_override_font_sizes/font_size = 40
+text = "salir"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_jujyb")
+autoplay = true
+
+[node name="HSlider" type="HSlider" parent="."]
+process_mode = 1
+modulate = Color(0.820956, 0, 0.061225, 1)
+visibility_layer = 5
+layout_mode = 0
+offset_left = 151.0
+offset_top = 154.0
+offset_right = 963.0
+offset_bottom = 316.0
+theme_override_icons/grabber = ExtResource("5_sbcqc")
+theme_override_icons/grabber_highlight = ExtResource("5_sbcqc")
+theme_override_icons/grabber_disabled = ExtResource("5_sbcqc")
+theme_override_icons/tick = ExtResource("5_sbcqc")
+min_value = -30.0
+max_value = 0.0
+
+[connection signal="pressed" from="VBoxContainer/atras" to="." method="_on_atras_pressed"]
+[connection signal="pressed" from="VBoxContainer/atras" to="." method="_on_button_2_pressed"]
+[connection signal="value_changed" from="HSlider" to="." method="_on_h_slider_value_changed"]

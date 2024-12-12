@@ -1,4 +1,4 @@
-[gd_scene load_steps=46 format=3 uid="uid://ctmcnuyrybmck"]
+[gd_scene load_steps=47 format=3 uid="uid://ctmcnuyrybmck"]
 
 [ext_resource type="Texture2D" uid="uid://dnvgxrp1ldopj" path="res://Suelo y Fondo/Assets_City.png" id="1_6l8b5"]
 [ext_resource type="Script" path="res://ecenas/scrips/edificio_segundo_nivel.gd" id="1_i6ib1"]
@@ -22,6 +22,7 @@
 [ext_resource type="Script" path="res://ecenas/scrips/audio_stream_player.gd" id="19_adj3y"]
 [ext_resource type="AudioStream" uid="uid://d4h4xoer78t6g" path="res://Music/308 Single.mp3" id="20_4gpdp"]
 [ext_resource type="AudioStream" uid="uid://c7mm5acigr2jd" path="res://Music/13. Death Groan (Male).wav" id="21_n8ixh"]
+[ext_resource type="PackedScene" uid="uid://2rf03sus1erq" path="res://ecenas/pausa.tscn" id="23_56d5k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6l8i4"]
 texture = ExtResource("1_6l8b5")
@@ -1589,6 +1590,8 @@ position = Vector2(931, -19)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pasar_al_final"]
 position = Vector2(1276, -181)
 shape = SubResource("RectangleShape2D_f53yn")
+
+[node name="pausa" parent="." instance=ExtResource("23_56d5k")]
 
 [connection signal="body_entered" from="Escalera 1-2" to="." method="_on_escalera_12_body_entered"]
 [connection signal="body_entered" from="Escalera 2-2" to="." method="_on_escalera_22_body_entered"]

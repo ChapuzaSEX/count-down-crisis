@@ -26,3 +26,14 @@ offset_bottom = 236.0
 size_flags_horizontal = 0
 theme_override_fonts/font = ExtResource("2_llkju")
 text = "pausa"
+
+[node name="salir" type="Button" parent="."]
+visible = false
+offset_left = 206.0
+offset_top = 262.0
+offset_right = 510.0
+offset_bottom = 294.0
+theme_override_fonts/font = ExtResource("2_llkju")
+text = "menu principal"
+
+[connection signal="pressed" from="salir" to="." method="_on_salir_pressed"]

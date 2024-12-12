@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://dr6pal7qi7rnw"]
+[gd_scene load_steps=6 format=3 uid="uid://dr6pal7qi7rnw"]
 
 [ext_resource type="Script" path="res://menu_inicio.gd" id="1_aaher"]
 [ext_resource type="Texture2D" uid="uid://b7hfxjxcwaswq" path="res://imagenes/1.png" id="2_tabqh"]
 [ext_resource type="FontFile" uid="uid://cdyir81tjkkcl" path="res://texto/m42.TTF" id="3_qwxjm"]
 [ext_resource type="Texture2D" uid="uid://djmlj7gc1vv3m" path="res://imagenes/descarga (2).png" id="4_trc70"]
+[ext_resource type="AudioStream" uid="uid://bpjwlejpl2p3j" path="res://Music/Sketchbook 2024-10-14.ogg" id="5_fl0nh"]
 
 [node name="menu_inicio" type="Control"]
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -74,6 +76,7 @@ text = "opciones"
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_qwxjm")
 theme_override_font_sizes/font_size = 50
+keep_pressed_outside = true
 text = "salir"
 
 [node name="Label" type="Label" parent="."]
@@ -98,6 +101,10 @@ offset_top = 13.0
 offset_right = 1132.0
 offset_bottom = 178.0
 texture = ExtResource("4_trc70")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_fl0nh")
+autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/opciones" to="." method="_on_opciones_pressed"]
