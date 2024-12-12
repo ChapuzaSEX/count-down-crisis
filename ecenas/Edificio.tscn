@@ -1515,6 +1515,7 @@ position = Vector2(-2, 4)
 zoom = Vector2(3, 3)
 
 [node name="BarraDeVida" type="ProgressBar" parent="CharacterBody2D" groups=["BarraVida"]]
+z_index = 4
 offset_left = -188.0
 offset_top = -107.0
 offset_right = -82.0
