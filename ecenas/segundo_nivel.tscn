@@ -1,4 +1,4 @@
-[gd_scene load_steps=45 format=3 uid="uid://ctmcnuyrybmck"]
+[gd_scene load_steps=46 format=3 uid="uid://ctmcnuyrybmck"]
 
 [ext_resource type="Texture2D" uid="uid://dnvgxrp1ldopj" path="res://Suelo y Fondo/Assets_City.png" id="1_6l8b5"]
 [ext_resource type="Script" path="res://ecenas/scrips/edificio_segundo_nivel.gd" id="1_i6ib1"]
@@ -1449,6 +1449,9 @@ bg_color = Color(0.174861, 0.143206, 0.0844214, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lb8oe"]
 bg_color = Color(0.573813, 0.153533, 0.201117, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f53yn"]
+size = Vector2(26.5, 40)
+
 [node name="Edificio" type="Node2D"]
 script = ExtResource("1_i6ib1")
 
@@ -1527,7 +1530,7 @@ stream = ExtResource("20_4gpdp")
 stream = ExtResource("21_n8ixh")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("15_fs4kk")]
-position = Vector2(-103, 594)
+position = Vector2(1166, -179)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(0, -2)
@@ -1581,9 +1584,16 @@ position = Vector2(213, -19)
 [node name="CharacterBody2D13" parent="." instance=ExtResource("16_tetly")]
 position = Vector2(931, -19)
 
+[node name="Pasar_al_final" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Pasar_al_final"]
+position = Vector2(1276, -181)
+shape = SubResource("RectangleShape2D_f53yn")
+
 [connection signal="body_entered" from="Escalera 1-2" to="." method="_on_escalera_12_body_entered"]
 [connection signal="body_entered" from="Escalera 2-2" to="." method="_on_escalera_22_body_entered"]
 [connection signal="body_entered" from="Escalera 3-2" to="." method="_on_escalera_32_body_entered"]
 [connection signal="body_entered" from="Escalera 4-2" to="." method="_on_escalera_42_body_entered"]
 [connection signal="body_entered" from="Escalera 5-2" to="." method="_on_escalera_52_body_entered"]
 [connection signal="body_entered" from="Escalera 6-2" to="." method="_on_escalera_62_body_entered"]
+[connection signal="body_entered" from="Pasar_al_final" to="." method="_on_pasar_al_final_body_entered"]

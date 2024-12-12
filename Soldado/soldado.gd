@@ -17,7 +17,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 # Cargar la escena de la bala
 var bullet_scene = preload("res://ecenas/bala.tscn")  # Asegúrate de que la ruta sea correcta
 
-var shoot_cooldown = 0.5  # Ajusta la cadencia de disparo aquí (0.5 segundos entre disparos)
+var shoot_cooldown = 0.4  # Ajusta la cadencia de disparo aquí (0.5 segundos entre disparos)
 var time_since_last_shot = shoot_cooldown  # Inicia con el cooldown completo para evitar disparos al iniciar
 
 # Nueva variable para la vida del personaje

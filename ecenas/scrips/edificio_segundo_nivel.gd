@@ -44,3 +44,8 @@ func _on_escalera_62_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D and body.nombre == "Alex Carter":
 		personaje.position.x = -103
 		personaje.position.y = -175
+
+func _on_pasar_al_final_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D and body.nombre == "Alex Carter":
+		get_tree().change_scene_to_file("res://ecenas/felicitacionesFinal.tscn")
+		

@@ -1,0 +1,87 @@
+[gd_scene load_steps=7 format=3 uid="uid://j7bvdfbyng7w"]
+
+[ext_resource type="Script" path="res://ecenas/felicitaciones_final.gd" id="1_0q3dx"]
+[ext_resource type="Texture2D" uid="uid://cl27pwdapcjxi" path="res://texto/fondoTexto.jpg" id="1_7icge"]
+[ext_resource type="FontFile" uid="uid://cdyir81tjkkcl" path="res://texto/m42.TTF" id="2_lexmt"]
+[ext_resource type="Texture2D" uid="uid://cqqm3w4qpb11b" path="res://imagenes/felicitacionesPrueba1.webp" id="2_uacsu"]
+[ext_resource type="FontFile" uid="uid://dhe1bcqor0ihx" path="res://Fuentes/VCR_OSD_MONO_1.001.ttf" id="3_qkoqk"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_reqqf"]
+texture = ExtResource("1_7icge")
+
+[node name="CanvasLayer" type="CanvasLayer"]
+script = ExtResource("1_0q3dx")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(575, 254.5)
+scale = Vector2(1.12305, 0.491211)
+texture = ExtResource("2_uacsu")
+
+[node name="TextboxContainer" type="MarginContainer" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -143.0
+offset_bottom = 3.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/margin_top = -2
+
+[node name="Panel" type="Panel" parent="TextboxContainer"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_reqqf")
+
+[node name="MarginContainer" type="MarginContainer" parent="TextboxContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="TextboxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextboxContainer/MarginContainer/Panel"]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 36.0
+offset_right = 322.0
+offset_bottom = 87.0
+
+[node name="Label" type="Label" parent="TextboxContainer/MarginContainer/Panel/HBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_lexmt")
+theme_override_font_sizes/font_size = 16
+
+[node name="Start" type="Label" parent="TextboxContainer/MarginContainer/Panel/HBoxContainer/Label"]
+layout_mode = 2
+offset_left = -191.0
+offset_top = -63.0
+offset_right = -106.0
+theme_override_fonts/font = ExtResource("2_lexmt")
+theme_override_font_sizes/font_size = 20
+text = "
+*
+"
+
+[node name="Texto" type="Label" parent="TextboxContainer/MarginContainer/Panel/HBoxContainer/Label"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = -99.0
+offset_top = -47.0
+offset_right = 1043.0
+offset_bottom = 122.0
+grow_horizontal = 2
+theme_override_fonts/font = ExtResource("3_qkoqk")
+theme_override_font_sizes/font_size = 32
+text = "\"¡Carter! ¡Eres nuestra ultima esperanza! La Mano de Erebo ha tomado el Centro Nexus.  Tienen una bomba. !La ciudad esta en peligro!\""
+autowrap_mode = 2
+clip_text = true
+
+[node name="End" type="Label" parent="TextboxContainer/MarginContainer/Panel/HBoxContainer/Label/Texto"]
+layout_mode = 0
+offset_left = 1108.0
+offset_top = 100.0
+offset_right = 1228.0
+offset_bottom = 130.0
+theme_override_fonts/font = ExtResource("2_lexmt")
+theme_override_font_sizes/font_size = 20
+text = "V"
