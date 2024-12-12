@@ -1,15 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfkci81vefeop"]
+[gd_scene load_steps=9 format=3 uid="uid://diofhq2wkbrok"]
 
-[ext_resource type="Script" path="res://ecenas/scrips/loading.gd" id="1_a28ss"]
-[ext_resource type="Texture2D" uid="uid://b7hfxjxcwaswq" path="res://imagenes/1.png" id="2_7olw1"]
-[ext_resource type="FontFile" uid="uid://cdyir81tjkkcl" path="res://texto/m42.TTF" id="3_o35u7"]
+[ext_resource type="Script" path="res://ecenas/loading_edificio_1.gd" id="1_f1r41"]
+[ext_resource type="Texture2D" uid="uid://b7hfxjxcwaswq" path="res://imagenes/1.png" id="2_2tomk"]
+[ext_resource type="FontFile" uid="uid://cdyir81tjkkcl" path="res://texto/m42.TTF" id="3_loeqj"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_26eoq"]
-font = ExtResource("3_o35u7")
+[sub_resource type="LabelSettings" id="LabelSettings_h7clu"]
+font = ExtResource("3_loeqj")
 font_size = 12
 
-[sub_resource type="LabelSettings" id="LabelSettings_jkhsk"]
-font = ExtResource("3_o35u7")
+[sub_resource type="LabelSettings" id="LabelSettings_yd1j2"]
+font = ExtResource("3_loeqj")
 font_size = 28
 font_color = Color(0, 0, 0, 1)
 
@@ -51,8 +51,8 @@ _data = {
 "carga": SubResource("Animation_lk5f8")
 }
 
-[node name="Loading" type="Node2D"]
-script = ExtResource("1_a28ss")
+[node name="loadingEdificio1" type="Node2D"]
+script = ExtResource("1_f1r41")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_top = 4.0
@@ -63,7 +63,7 @@ color = Color(0, 0, 0, 1)
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(581, 330)
 scale = Vector2(0.60625, 0.601852)
-texture = ExtResource("2_7olw1")
+texture = ExtResource("2_2tomk")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(580, 331)
@@ -73,8 +73,8 @@ offset_left = 67.0
 offset_top = 614.0
 offset_right = 1515.0
 offset_bottom = 644.0
-text = "\"Piensa rapido, actua mas rapido. Cada error acerca la explosion.\""
-label_settings = SubResource("LabelSettings_26eoq")
+text = "\"El tiempo corre... ¿Estas listo para desactivar la amenaza?\""
+label_settings = SubResource("LabelSettings_h7clu")
 
 [node name="Carga" type="Label" parent="."]
 offset_left = 393.0
@@ -82,7 +82,7 @@ offset_top = 310.0
 offset_right = 729.0
 offset_bottom = 352.0
 text = "Cargando"
-label_settings = SubResource("LabelSettings_jkhsk")
+label_settings = SubResource("LabelSettings_yd1j2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
