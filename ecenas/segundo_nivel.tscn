@@ -1531,7 +1531,7 @@ stream = ExtResource("20_4gpdp")
 stream = ExtResource("21_n8ixh")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("15_fs4kk")]
-position = Vector2(1166, -179)
+position = Vector2(1199, 588)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(0, -2)

@@ -21,8 +21,8 @@ func _ready():
 	print("Starting state: State.READY")
 	hide_textbox()
 	queue_text("¡Carter! ¡Eres nuestra ultima esperanza! La Mano de Erebo ha tomado el Centro Nexus. Tienen una bomba. ¡La ciudad esta en peligro!")
-	queue_text("Han tomado a todos los rehenes. La bomba esta programada para detonar en dos(?) horas. Necesitamos que te infiltres, neutralices la amenaza y los saques de ahi.")
-	queue_text("Conoce los puntos de entrada, evita las camaras de seguridad y, sobre todo, ten cuidado con los explosivos. Hemos recibido informes de que tiene personal en todos los pisos.")
+	queue_text("Han tomado a todos los rehenes. La bomba esta programada para detonar en una hora. Necesitamos que te infiltres, neutralices la amenaza y los saques de ahi.")
+	queue_text("Conoce los puntos de entrada, evita las cámaras de seguridad y, sobre todo, ten cuidado con los explosivos. Hemos recibido informes de que tiene personal en todos los pisos.")
 	queue_text("Carter, la ciudad confia en ti. No puedes fallar. ¡Ve y acaba con esto!")
 
 func _process(delta):

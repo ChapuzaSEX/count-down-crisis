@@ -17,7 +17,7 @@ var shoot_cooldown = 0.4  # Ajusta la cadencia de disparo aquí (0.5 segundos en
 var time_since_last_shot = shoot_cooldown  # Inicia con el cooldown completo para evitar disparos al iniciar
 
 @onready var sonBala = $"../AudioStreamPlayer2D"
-@onready var sonHerir =$"../AudioStreamPlayer2D2"
+@onready var sonHerir = $"../AudioStreamPlayer2D2"
 
 @onready var raycast_left = $RayCast_izquierda  # Raycast a la izquierda
 @onready var raycast_right = $RayCast_derecha  # Raycast a la derecha
@@ -70,18 +70,21 @@ func _physics_process(delta: float) -> void:
 	# Mueve el NPC
 	move_and_slide()
 
-
 func check_player_detection_and_distance():
 	# Detección del jugador a través de los raycasts
 	print("Chequeando detección del jugador")
-	if raycast_left.is_colliding() and raycast_left.get_collider().is_in_group("player"):
-		print("Jugador detectado a la izquierda")
-		player_reference = raycast_left.get_collider()
-		start_pursuit(-1)
-	elif raycast_right.is_colliding() and raycast_right.get_collider().is_in_group("player"):
-		print("Jugador detectado a la derecha")
-		player_reference = raycast_right.get_collider()
-		start_pursuit(1)
+	if raycast_left.is_colliding():
+		var collider = raycast_left.get_collider()
+		if collider and collider.is_in_group("player"):
+			print("Jugador detectado a la izquierda")
+			player_reference = collider
+			start_pursuit(-1)
+	elif raycast_right.is_colliding():
+		var collider = raycast_right.get_collider()
+		if collider and collider.is_in_group("player"):
+			print("Jugador detectado a la derecha")
+			player_reference = collider
+			start_pursuit(1)
 	else:
 		pursuing = false
 		player_reference = null
@@ -100,6 +103,11 @@ func start_pursuit(direction: int):
 	# Disparar si está persiguiendo y el temporizador ha terminado
 	if pursuing and cooldown_timer <= 0:
 		print("Preparando disparo...")
+		# Cambia la dirección hacia el jugador antes de disparar
+		if direction == -1 and !$AnimatedSprite2D.flip_h:
+			change_direction()
+		elif direction == 1 and $AnimatedSprite2D.flip_h:
+			change_direction()
 		shoot_bullet(direction)
 		is_shooting = true
 		SPEED = 0
@@ -118,7 +126,7 @@ func shoot_bullet(direction: int):
 	$AnimatedSprite2D.play("Disparo")
 
 func change_direction():
-	# Cambia de dirección al topar con una pared
+	# Cambia de dirección al topar con una pared o disparar
 	velocity.x = -velocity.x
 	$AnimatedSprite2D.flip_h = not $AnimatedSprite2D.flip_h  # Cambia la orientación del sprite
 	print("Dirección cambiada")
