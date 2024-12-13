@@ -63,5 +63,5 @@ autoplay = true
 
 [connection signal="pressed" from="VBoxContainer/volumen" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="VBoxContainer/volumen" to="." method="_on_volumen_pressed"]
-[connection signal="pressed" from="VBoxContainer/atras" to="." method="_on_atras_pressed"]
 [connection signal="pressed" from="VBoxContainer/atras" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="VBoxContainer/atras" to="." method="_on_atras_pressed"]
